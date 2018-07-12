@@ -26,7 +26,7 @@ users = [
 class User(Resource):
     def get(self, name):
         for user in users:
-            if (name == users["name"]):
+            if (name == user["name"]):
                 return user, 200
         return "User not found", 404
 
@@ -37,7 +37,7 @@ class User(Resource):
         args = parser.parse_args()
 
         for user in users:
-            if (name == users["name"]):
+            if (name == user["name"]):
                 return "User with name {} already exists".format(name), 400
 
         user = {
@@ -74,3 +74,7 @@ class User(Resource):
         global users
         users = [user for user in users if user["name"] != name]
         return "{} has been deleted.".format(name), 200
+
+
+api.add_resource(User, "/user/<string:name>")
+app.run(debug=True)
