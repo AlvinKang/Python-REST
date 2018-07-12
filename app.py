@@ -21,3 +21,11 @@ users = [
         "occupation": "Web Developer"
     }
 ]
+
+
+class User(Resource):
+    def get(self, name):
+        for user in users:
+            if (name == users["name"]):
+                return user, 200
+        return "User not found", 404
