@@ -69,3 +69,8 @@ class User(Resource):
 
         users.append(user)
         return user, 201
+
+    def delete(self, name):
+        global users
+        users = [user for user in users if user["name"] != name]
+        return "{} has been deleted.".format(name), 200
